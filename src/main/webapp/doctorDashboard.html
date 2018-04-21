@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>Doctor Dashboard | Healthcare</title>
+<!-- Favicon-->
+<!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
+<!-- Bootstrap Core Css -->
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- Waves Effect Css -->
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
+<!-- Morris Chart Css-->
+<!--  <link href="plugins/morrisjs/morris.css" rel="stylesheet" />-->
+
+<!-- Custom Css -->
+<link href="css/style.css" rel="stylesheet">
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- Jquery Core Js -->
+<script src="plugins/jquery/jquery.min.js"></script>
+
+<!--Google Chart-->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+</script>
+
+<script src="js/Custom/ipaddress.js"></script>
+
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						//GET Total Blogs Count
+						$
+								.ajax({
+									url : getPresentationLayerAddress()
+											+ "/api/v1/blogCount",
+									type : "GET",
+									success : function(result) {
+										$("#totalBlogsCountContainer")
+												.append(
+														'<div id="totalblogCount" class="number count-to" data-from="0" data-to="" data-speed="10" data-fresh-interval="100">'
+																+ JSON
+																		.stringify(result)
+																+ '</div>');
+										$("#totalblogCount").attr("data-to",
+												"" + JSON.stringify(result));
+									},
+									error : function(result) {
+										alert('Error in serving Total Blogs Count request: '
+												+ result);
+									}
+								});
+
+						//GET Personal Blogs Count
+						$
+								.ajax({
+									url : getPresentationLayerAddress()
+											+ "/api/v1/blogCount/doctor/"
+											+ $.session.get("doctorId") + "",
+									type : "GET",
+									success : function(result) {
+										$("#personalBlogsCountContainer")
+												.append(
+														'<div id="personalBlogsCount" class="number count-to" data-from="0" data-to="" data-speed="10" data-fresh-interval="100">'
+																+ JSON
+																		.stringify(result)
+																+ '</div>');
+										$("#personalBlogsCount").text(
+												" " + JSON.stringify(result));
+									},
+									error : function(result) {
+										alert('Error in serving Personal Blogs Count request'
+												+ result);
+									}
+								});
+
+					});
+</script>
+
+<!-- //GET Total Interns Count
+ $ .ajax({ url :
+getCoreLayerAddress() + "/Mentees/GetAssociatesCount?type=Current", type
+: "GET", success : function(result) {
+$("#totalAssociatesCountContainer") .append( '
+<div id="totalAssocCount" class="number count-to" data-from="0"
+	data-to="" data-speed="1000" data-fresh-interval="100">' + JSON
+	.stringify(result) + '</div>
+'); $("#totalAssocCount").attr("data-to", "" + JSON.stringify(result));
+}, error : function(result) { alert('Error in serving Total Associates
+Count: ' + result); } }); //GET Graduated Interns Count $ .ajax({ url :
+getCoreLayerAddress() + "/Mentees/GetAssociatesCount?type=Graduated",
+type : "GET", success : function(result) {
+$("#graduatedAssociatesCountContainer") .append( '
+<div id="gradAssocCount" class="number count-to" data-from="0"
+	data-to="" data-speed="1000" data-fresh-interval="100">' + JSON
+	.stringify(result) + '</div>
+'); $("#gradAssocCount").text( " " + JSON.stringify(result)); }, error :
+function(result) { alert('Error in serving Graduated Associates Count: '
++ result); } }); //GET Monthly Associate Movement $ .ajax({ url :
+getCoreLayerAddress() + "/Mentees/GetDevAcademyMonthlyStatus", type :
+"GET", success : function(result) { var dataTable = new
+google.visualization.DataTable(); dataTable.addColumn('string',
+'Month'); dataTable.addColumn('number', 'Intake');
+dataTable.addColumn('number', 'Graduated'); for (var i = 0; i <
+result.length; i++) { if (result[i].Month === 1) { dataTable.addRow([
+'Jan', result[i].Intake, result[i].Graduate ]); } else if
+(result[i].Month === 2) { dataTable.addRow([ 'Feb', result[i].Intake,
+result[i].Graduate ]); } else if (result[i].Month === 3) {
+dataTable.addRow([ 'Mar', result[i].Intake, result[i].Graduate ]); }
+else if (result[i].Month === 4) { dataTable.addRow([ 'Apr',
+result[i].Intake, result[i].Graduate ]); } else if (result[i].Month ===
+5) { dataTable.addRow([ 'May', result[i].Intake, result[i].Graduate ]);
+} else if (result[i].Month === 6) { dataTable.addRow([ 'Jun',
+result[i].Intake, result[i].Graduate ]); } else if (result[i].Month ===
+7) { dataTable.addRow([ 'Jul', result[i].Intake, result[i].Graduate ]);
+} else if (result[i].Month === 8) { dataTable.addRow([ 'Aug',
+result[i].Intake, result[i].Graduate ]); } else if (result[i].Month ===
+9) { dataTable.addRow([ 'Sep', result[i].Intake, result[i].Graduate ]);
+} else if (result[i].Month === 10) { dataTable.addRow([ 'Oct',
+result[i].Intake, result[i].Graduate ]); } else if (result[i].Month ===
+11) { dataTable.addRow([ 'Nov', result[i].Intake, result[i].Graduate ]);
+} else if (result[i].Month === 12) { dataTable.addRow([ 'Dec',
+result[i].Intake, result[i].Graduate ]); } } var options = { title :
+'DevAcademy Status', //curveType: 'function' //legend: { position:
+'bottom' } }; var chart = new google.visualization.LineChart( document
+.getElementById('devAcademyMonthlyStatus')); chart.draw(dataTable,
+options); }, error : function(result) { alert('Error in serving
+Graduated Associates Count: ' + result); } }); //GET Average WorkEx
+Associate Chart $ .ajax({ url : getCoreLayerAddress() +
+"/Mentees/GetAverageWorkExChart", type : "GET", success :
+function(result) { if (result.length === 0) { alert("Not enought data to
+draw charts!"); } else { var dataTable = new
+google.visualization.DataTable(); dataTable .addColumn('string',
+'Associate Work Experience'); dataTable.addColumn('number', 'Associate
+Count'); if (result.length === 1) { dataTable .addRow([
+result[0].WorkExperience, result[0].DiffDate ]); } else if
+(result.length === 2) { dataTable .addRow([ result[0].WorkExperience,
+result[0].DiffDate ]); dataTable .addRow([ result[1].WorkExperience,
+result[1].DiffDate ]); } else if (result.length === 3) { dataTable
+.addRow([ result[0].WorkExperience, result[0].DiffDate ]); dataTable
+.addRow([ result[1].WorkExperience, result[1].DiffDate ]); dataTable
+.addRow([ result[2].WorkExperience, result[2].DiffDate ]); } else if
+(result.length === 4) { dataTable .addRow([ result[0].WorkExperience,
+result[0].DiffDate ]); dataTable .addRow([ result[1].WorkExperience,
+result[1].DiffDate ]); dataTable .addRow([ result[2].WorkExperience,
+result[2].DiffDate ]); dataTable .addRow([ result[3].WorkExperience,
+result[3].DiffDate ]); } var options = { title : 'Work Experience Vs
+Average Iteration(s)', bar : { groupWidth : "25%" }, legend : 'bottom',
+vAxes : { // Adds titles to each axis. 0 : { title : 'Average
+Iteration(s)' } }, hAxes : { // Adds titles to each axis. 0 : { title :
+' Work Experience (Years)' } } }; $("#avgWorkExChart").empty();//clear
+div var chart = new google.visualization.ColumnChart( document
+.getElementById('avgWorkExChart')); chart.draw(dataTable, options);
+
+//Fancy Notification showNotification( 'bg-purple', 'Average Work
+Experience Chart Created!', 'top', 'right', 'animated ZoomIn', 'animated
+ZoomOut');//NotifyCustom.js } }, error : function(result) { alert('Error
+in serving Batch WorkEx Chart: ' + result); } }); });-->
+
+
+
+</head>
+<body class="theme-blue">
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>Please wait...</p>
+		</div>
+	</div>
+	<!-- #END# Page Loader -->
+	<!-- Overlay For Sidebars -->
+
+	<div class="overlay"></div>
+
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Top Bar -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar-collapse"
+					aria-expanded="false"></a> <a href="javascript:void(0);"
+					class="bars"></a> <a class="navbar-brand"
+					href="doctorDashboard.html">Healthcare Application!</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-center">
+					<li class="pull-right" style="margin-top: 34%;"></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- #Top Bar -->
+
+	<section>
+		<!-- Left Sidebar -->
+		<aside id="leftsidebar" class="sidebar">
+			<!-- User Info -->
+			<div class="user-info">
+				<div class="image">
+					<img src="images/user.png" width="48" height="48" alt="User" />
+				</div>
+				<div class="info-container">
+					<div class="name" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" id="profileName"></div>
+					<div class="btn-group user-helper-dropdown">
+						<i class="material-icons" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+						<ul class="dropdown-menu pull-right">
+							<li><button id="doctor-logOut" onClick="doctorlogout()"
+									class="btn btn-block bg-red waves-effect">Sign Out</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #User Info -->
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+					<li class="header">Doctor Healthcare Tools</li>
+					<li class="active"><a href="doctorDashboard.html"> <i
+							class="material-icons">home</i> <span>Dashboard</span>
+					</a></li>
+					<!--<li><a href="MailHistory.html"> <i class="material-icons">history</i>
+							<span>Mail History</span>
+					</a></li>
+					 <li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">drafts</i> <span>Send Mails</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="MailDashboard.html"> <i
+									class="material-icons">email</i> <span>E-mail</span>
+							</a></li>
+							<li><a href="InviteDashboard.html"> <i
+									class="material-icons">mail_outline</i> <span>Invite</span>
+							</a></li>
+						</ul></li>-->
+					<li><a href="createBlog.html"> <i class="material-icons">create</i>
+							<span>Write Blog</span>
+					</a></li>
+					<!-- <li><a href="javascript:void(0);" class="menu-toggle"> <i
+							class="material-icons">import_export</i> <span>Import</span>
+					</a>
+						<ul class="ml-menu">
+							<li><a href="../ExcelToSql/MailDataTransformation.aspx">
+									<i class="material-icons">folder</i> <span>Learning Team
+										Excel</span>
+							</a></li>
+						</ul></li>
+					<li><a href="BatchDashboard.html"> <i
+							class="material-icons">assignment</i> <span>Batch
+								Management</span>
+					</a></li>
+					<li><a href="AssociateDashboard.html"> <i
+							class="material-icons">group</i> <span>Associate Dashboard</span>
+					</a></li>-->
+				</ul>
+			</div>
+			<!-- #Menu -->
+			<!-- Footer -->
+			<div class="legal">
+				<div class="copyright">
+					&copy; 2017 <a
+						href="https://github.com/gurayyarar/AdminBSBMaterialDesign">AdminBSB
+						- Material Design</a>.
+				</div>
+			</div>
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+	</section>
+
+	<section class="content">
+		<div class="container-fluid">
+			<div class="block-header">
+				<h2>DASHBOARD</h2>
+			</div>
+
+			<!-- Widgets -->
+			<div class="row clearfix">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-pink hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">done</i>
+						</div>
+						<div class="content" id="totalBlogsCountContainer">
+							<div class="text">Total Blogs</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-cyan hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">playlist_add_check</i>
+						</div>
+						<div class="content" id="personalBlogsCountContainer">
+							<div class="text">Blogs Written</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-light-green hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">email</i>
+						</div>
+						<div class="content" id="emailCountContainer">
+							<div class="text">Emails Sent</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-orange hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">mail_outline</i>
+						</div>
+						<div class="content" id="inviteCountContainer">
+							<div class="text">Invites Sent</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #END# Widgets -->
+			<!-- CPU Usage -->
+			<div class="row clearfix">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="card">
+						<div class="header">
+							<div class="row clearfix">
+								<div class="col-xs-12 col-sm-6">
+									<h2>Number of Patients admitted to Hospitals across the
+										USA in Real Time!</h2>
+								</div>
+								<div class="col-xs-12 col-sm-6 align-right">
+									<div class="switch panel-switch-btn">
+										<span class="m-r-10 font-12">REAL TIME</span> <label>OFF<input
+											type="checkbox" id="realtime" checked><span
+											class="lever switch-col-cyan"></span>ON
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="body">
+							<div id="real_time_chart" class="dashboard-flot-chart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #END# CPU Usage -->
+		</div>
+	</section>
+
+
+
+
+
+
+
+	<!-- Bootstrap Core Js -->
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+	<!-- Select Plugin Js -->
+	<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+	<!-- Slimscroll Plugin Js -->
+	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="plugins/node-waves/waves.js"></script>
+
+	<!-- Jquery CountTo Plugin Js -->
+	<script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
+	<!-- Morris Plugin Js -->
+	<script src="plugins/raphael/raphael.min.js"></script>
+	<script src="plugins/morrisjs/morris.js"></script>
+
+
+	<!-- ChartJs -->
+	<script src="plugins/chartjs/Chart.bundle.js"></script>
+
+	<!-- Flot Charts Plugin Js -->
+	<script src="plugins/flot-charts/jquery.flot.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.resize.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.pie.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.categories.js"></script>
+	<script src="plugins/flot-charts/jquery.flot.time.js"></script>
+
+	<!-- Sparkline Chart Plugin Js -->
+	<script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+	<!-- Custom Js -->
+	<script src="js/admin.js"></script>
+	<script src="js/pages/index.js"></script>
+
+	<!--Devacademy JS-->
+	<script src="js/Custom/ipaddress.js"></script>
+	<script src="js/Custom/jquerysession.js"></script>
+	<script src="js/Custom/NotifyCustom.js"></script>
+	<script src="js/Custom/doctorDashboard.js"></script>
+
+	<!-- Demo Js -->
+	<script src="js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>Sign Up | Healthcare Application</title>
+<!-- Favicon-->
+<!--<link rel="icon" href="../../favicon.ico" type="image/x-icon">-->
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
+
+<!-- Bootstrap Core Css -->
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Waves Effect Css -->
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+<!-- Custom Css -->
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="signup-page">
+	<div class="signup-box">
+		<div class="logo">
+			<a href="javascript:void(0);">Health Application!</a> <small>Your
+				Trusted Partner for Health!</small>
+		</div>
+		<div class="card">
+			<div class="body">
+				<div class="msg">Sign Up as a Patient!</div>
+				<div class="row clearfix">
+					<div class="col-sm-12">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control"
+									id="register-patient-name" /> <label class="form-label">Name*</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="email" class="form-control"
+									id="register-patient-email" /> <label class="form-label">Email*</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="password" class="form-control"
+									id="register-patient-password" /> <label class="form-label">Password*</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-float">
+							<div class="demo-radio-button">
+								<input name="group2" type="radio" id="patient-female"
+									value="Female" /> <label for="patient-female">Female</label> <input
+									name="group2" type="radio" id="patient-male" value="Male" /> <label
+									for="patient-male">Male</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control"
+									id="register-patient-dob" /> <label class="form-label">Date
+									of Birth(YYYY-MM-DD)</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="register-patient-btn"
+							class="btn btn-block bg-red waves-effect"
+							onclick="registerPatient()" type="submit">
+							SIGN UP<span></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Jquery Core Js -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="plugins/node-waves/waves.js"></script>
+	<!-- Validation Plugin Js -->
+	<script src="plugins/jquery-validation/jquery.validate.js"></script>
+	<!-- Custom Js -->
+	<script src="js/admin.js"></script>
+	<script src="js/pages/examples/sign-in.js"></script>
+
+	<!--DevAcademy JS-->
+	<script src="js/Custom/ipaddress.js"></script>
+	<script src="js/Custom/jquerysession.js"></script>
+	<script src="js/Custom/register.js"></script>
+	<script src="js/Custom/NotifyCustom.js"></script>
+
+</body>
+
+</html>

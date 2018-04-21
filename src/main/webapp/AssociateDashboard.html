@@ -1,0 +1,680 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Associate Dashboard | DevAcademy</title>
+    <!-- Favicon-->
+    <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Multi Select Css -->
+    <link href="plugins/multi-select/css/multi-select.css" rel="stylesheet">
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <!-- Morris Chart Css-->
+    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+</head>
+<body class="theme-blue">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+
+    <div class="overlay"></div>
+
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="home.html">Cerner Dev Academy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="pull-right" style="margin-top:34%;">
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="profileName"></div>
+                    <div class="email" id="profileEmail"></div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li role="seperator" class="divider"></li>
+                            <li><a name="signOut"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li role="seperator" class="divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">Dev Academy Tools</li>
+                    <li>
+                        <a href="Dashboard.html">
+                            <i class="material-icons">home</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="MailHistory.html">
+                            <i class="material-icons">history</i>
+                            <span>Mail History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">drafts</i>
+                            <span>Send Mails</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="MailDashboard.html">
+                                    <i class="material-icons">email</i>
+                                    <span>E-mail</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="InviteDashboard.html">
+                                    <i class="material-icons">mail_outline</i>
+                                    <span>Invite</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="CreateTemplate.html">
+                            <i class="material-icons">create</i>
+                            <span>Create Mail Template</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">import_export</i>
+                            <span>Import</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="../ExcelToSql/MailDataTransformation.aspx">
+                                    <i class="material-icons">folder</i>
+                                    <span>Learning Team Excel</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="BatchDashboard.html">
+                            <i class="material-icons">assignment</i>
+                            <span>Batch Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="AssociateDashboard.html">
+                            <i class="material-icons">group</i>
+                            <span>Associate Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="https://github.com/gurayyarar/AdminBSBMaterialDesign">AdminBSB - Material Design</a>.
+                </div>
+                <div class="version">
+                    <img src="images/DevAcademy logo.png" style="width:100%;height:8%;" />
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <!--<aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                    <ul class="demo-choose-skin">
+                        <li data-theme="red" class="active">
+                            <div class="red"></div>
+                            <span>Red</span>
+                        </li>
+                        <li data-theme="pink">
+                            <div class="pink"></div>
+                            <span>Pink</span>
+                        </li>
+                        <li data-theme="purple">
+                            <div class="purple"></div>
+                            <span>Purple</span>
+                        </li>
+                        <li data-theme="deep-purple">
+                            <div class="deep-purple"></div>
+                            <span>Deep Purple</span>
+                        </li>
+                        <li data-theme="indigo">
+                            <div class="indigo"></div>
+                            <span>Indigo</span>
+                        </li>
+                        <li data-theme="blue">
+                            <div class="blue"></div>
+                            <span>Blue</span>
+                        </li>
+                        <li data-theme="light-blue">
+                            <div class="light-blue"></div>
+                            <span>Light Blue</span>
+                        </li>
+                        <li data-theme="cyan">
+                            <div class="cyan"></div>
+                            <span>Cyan</span>
+                        </li>
+                        <li data-theme="teal">
+                            <div class="teal"></div>
+                            <span>Teal</span>
+                        </li>
+                        <li data-theme="green">
+                            <div class="green"></div>
+                            <span>Green</span>
+                        </li>
+                        <li data-theme="light-green">
+                            <div class="light-green"></div>
+                            <span>Light Green</span>
+                        </li>
+                        <li data-theme="lime">
+                            <div class="lime"></div>
+                            <span>Lime</span>
+                        </li>
+                        <li data-theme="yellow">
+                            <div class="yellow"></div>
+                            <span>Yellow</span>
+                        </li>
+                        <li data-theme="amber">
+                            <div class="amber"></div>
+                            <span>Amber</span>
+                        </li>
+                        <li data-theme="orange">
+                            <div class="orange"></div>
+                            <span>Orange</span>
+                        </li>
+                        <li data-theme="deep-orange">
+                            <div class="deep-orange"></div>
+                            <span>Deep Orange</span>
+                        </li>
+                        <li data-theme="brown">
+                            <div class="brown"></div>
+                            <span>Brown</span>
+                        </li>
+                        <li data-theme="grey">
+                            <div class="grey"></div>
+                            <span>Grey</span>
+                        </li>
+                        <li data-theme="blue-grey">
+                            <div class="blue-grey"></div>
+                            <span>Blue Grey</span>
+                        </li>
+                        <li data-theme="black">
+                            <div class="black"></div>
+                            <span>Black</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                    <div class="demo-settings">
+                        <p>GENERAL SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Report Panel Usage</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Email Redirect</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>SYSTEM SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Notifications</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Auto Updates</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>ACCOUNT SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Offline</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Location Permission</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>-->
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <!-- Exportable Associate Moderator Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Associate Moderator</h2>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-hover" id="associateModeratorTable">
+                                <thead>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Technical Stack</th>
+                                        <th>Location</th>
+                                        <th>College Name</th>
+                                        <th>Experience Level</th>
+                                        <th>Approve</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Technical Stack</th>
+                                        <th>Location</th>
+                                        <th>College Name</th>
+                                        <th>Experience Level</th>
+                                        <th>Approve</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exportable Associate Moderator Table -->
+            <!-- Exportable Current Associate Details Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Current Associate Status</h2>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-hover" id="currentAssociateTable">
+                                <thead>
+                                    <tr>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Start Date</th>
+                                        <th>Iteration</th>
+                                        <th>Week</th>
+                                        <th>Mentor Name</th>
+                                        <th>Manager Name</th>
+                                        <th>Technical Stack</th>
+                                        <th>Edit / Delete</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Start Date</th>
+                                        <th>Iteration</th>
+                                        <th>Week</th>
+                                        <th>Mentor Name</th>
+                                        <th>Manager Name</th>
+                                        <th>Technical Stack</th>
+                                        <th>Edit / Delete</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exportable Current Associate Details Table -->
+            <!-- Exportable Graduated Associate Details Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Graduated Associate Status</h2>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-hover" id="graduatedAssociateStatusTable">
+                                <thead>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Mentor Name</th>
+                                        <th>Manager Name</th>
+                                        <th>Graduation Date</th>
+                                        <th>Technical Stack</th>
+                                        <th>FTE Team</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Mentor Name</th>
+                                        <th>Manager Name</th>
+                                        <th>Graduation Date</th>
+                                        <th>Technical Stack</th>
+                                        <th>FTE Team</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exportable Graduated Associate Details Table -->
+            <!-- Exportable Rejected Associate Details Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Full Time Offer Rejected Associate Status</h2>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-hover" id="rejectedAssociateStatusTable">
+                                <thead>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Mentor Name</th>
+                                        <th>Graduation Date</th>
+                                        <th>College Name</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Associate ID</th>
+                                        <th>Associate Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Mentor Name</th>
+                                        <th>Graduation Date</th>
+                                        <th>College Name</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exportable Rejected Associate Details Table -->
+            <!-- Update Associate -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" id="editAssociateCard">
+                        <div class="header">
+                            <h2>
+                                <button class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15" type="button" onclick="hideEditCard()">
+                                    <i class="material-icons">border_color</i>
+                                </button>
+                                Edit Associate Details
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="body">
+                                            <div class="row clearfix">
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input class="form-control" type="text" id="updateAssociateId" name="updateAssociateId" required disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" id="updateAssociateStartDate" class="datepicker form-control" required placeholder="Associate Start Date*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" id="updateAssociateGraduateDate" class="datepicker form-control" required placeholder="Associate Graduation Date*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-12">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input class="form-control" type="text" id="updateAssociateFTETeam" name="updateAssociateFTETeam" required>
+                                                            <label class="form-label">Associate Employment Team</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input class="form-control" type="text" id="updateAssociateMentorId" name="updateAssociateMentorId" required>
+                                                            <label class="form-label">Associate's Mentor ID</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input class="form-control" type="text" id="updateAssociateManagerId" name="updateAssociateManagerId" required>
+                                                            <label class="form-label">Associate's Manager ID</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="batchdropdown" class="form-control">
+                                                                <option value="null">---- Batch ----</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div align="center">
+                                                <button type="button" class="btn btn-primary m-t-15 waves-effect" id="updateBtn" align="center"><i class="material-icons">update</i>&nbsp;&nbsp;&nbsp;Update Associate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Update Associate -->
+            <!-- Add Associate -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card" id="addAssociateCard">
+                        <div class="header">
+                            <h2>
+                                <button class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float m-b-15 collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseAddAssociate" aria-expanded="false" aria-controls="collapse" onclick="GetAssocbatchData()">
+                                    <i class="material-icons">add_circle</i>
+                                </button>
+                                Add New Associate
+                            </h2>
+                        </div>
+                        <div class="body collapse" id="collapseAddAssociate" aria-expanded="false" style="height: 0px;">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="body">
+                                            <div class="row clearfix">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input class="form-control" type="text" id="associateId" name="associateId" required>
+                                                            <label class="form-label">Enter Associate Id*</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="associatebatchdropdown" class="form-control"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div align="center">
+                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" align="center" onclick="addAssociate()"><i class="material-icons">build</i>&nbsp;&nbsp;&nbsp;Add Associate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Associate -->
+        </div>
+    </section>
+
+
+
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+    <!-- Jquery Knob Plugin Js -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <!-- Autosize Plugin Js -->
+    <script src="plugins/autosize/autosize.js"></script>
+    <!-- Moment Plugin Js -->
+    <script src="plugins/momentjs/moment.js"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="js/pages/forms/basic-form-elements.js"></script>
+    <script src="js/pages/charts/jquery-knob.js"></script>
+    <script src="js/pages/tables/jquery-datatable.js"></script>
+
+
+
+    <!--Devacademy JS-->
+    <script src="js/Custom/ipaddress.js"></script>
+    <script src="js/Custom/jquerysession.js"></script>
+    <script src="js/Custom/Dashboard.js"></script>    
+    <script src="js/Custom/AssociateDashboard.js"></script>
+    <script src="js/Custom/NotifyCustom.js"></script>
+
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
+</body>
+</html>

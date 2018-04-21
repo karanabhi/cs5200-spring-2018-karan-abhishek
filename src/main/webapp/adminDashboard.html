@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<title>Admin Dashboard | Healthcare</title>
+<!-- Favicon-->
+<!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
+<!-- Bootstrap Core Css -->
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- Waves Effect Css -->
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
+<!-- Morris Chart Css-->
+<!--  <link href="plugins/morrisjs/morris.css" rel="stylesheet" />-->
+<!-- Custom Css -->
+<link href="css/style.css" rel="stylesheet">
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- Jquery Core Js -->
+<script src="plugins/jquery/jquery.min.js"></script>
+
+<!--Google Chart-->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="js/Custom/ipaddress.js"></script>
+
+</head>
+<body class="theme-black">
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>Please wait...</p>
+		</div>
+	</div>
+	<!-- #END# Page Loader -->
+	<!-- Overlay For Sidebars -->
+
+	<div class="overlay"></div>
+
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Top Bar -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar-collapse"
+					aria-expanded="false"></a> <a href="javascript:void(0);"
+					class="bars"></a> <a class="navbar-brand"
+					href="adminDashboard.html">Healthcare Application!</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-center">
+					<li class="pull-right" style="margin-top: 34%;"></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- #Top Bar -->
+
+	<section>
+		<!-- Left Sidebar -->
+		<aside id="leftsidebar" class="sidebar">
+			<!-- User Info -->
+			<div class="user-info">
+				<div class="image">
+					<img src="images/user.png" width="48" height="48" alt="User" />
+				</div>
+				<div class="info-container">
+					<div class="name" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" id="adminName"></div>
+					<div class="btn-group user-helper-dropdown">
+						<i class="material-icons" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+						<ul class="dropdown-menu pull-right">
+							<li><button id="admin-logOut" onClick="adminlogout()"
+									class="btn btn-block bg-red waves-effect">Sign Out</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #User Info -->
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+					<li class="header">Admin Moderator Tools</li>
+					<li class="active"><a href="adminDashboard.html"> <i
+							class="material-icons">home</i> <span>Dashboard</span>
+					</a></li>
+				</ul>
+			</div>
+			<!-- #Menu -->
+			<!-- Footer -->
+			<div class="legal">
+				<div class="copyright">
+					&copy; 2017 <a
+						href="https://github.com/gurayyarar/AdminBSBMaterialDesign">AdminBSB
+						- Material Design</a>.
+				</div>
+			</div>
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+	</section>
+	<section class="content">
+		<div class="container-fluid">
+			<!-- Exportable Doctor Table -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<h2>Doctor Moderator</h2>
+						</div>
+						<div class="body">
+							<table class="table table-bordered table-hover"
+								id="doctorModeratorTable">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Address</th>
+										<th>Phone</th>
+										<th>Specialization</th>
+										<th>Edit/Delete</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Address</th>
+										<th>Phone</th>
+										<th>Specialization</th>
+										<th>Edit/Delete</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Exportable Doctor Moderator Table -->
+			<!-- Exportable  Patient Moderator Table -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<h2>Patient Moderator</h2>
+						</div>
+						<div class="body">
+							<table class="table table-bordered table-hover"
+								id="patientModeratorTable">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>DOB</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Edit / Delete</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>ID</th>
+										<th>DOB</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Edit / Delete</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Exportable  Patient Moderator Table -->
+			<!-- Exportable Blog Moderator Table -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header">
+							<h2>Blog Moderator</h2>
+						</div>
+						<div class="body">
+							<table class="table table-bordered table-hover"
+								id="blogModeratorTable">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Title</th>
+										<th>Content</th>
+										<th>Timestamp</th>
+										<th>Doctor Name</th>
+										<th>Edit / Delete</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>ID</th>
+										<th>Title</th>
+										<th>Content</th>
+										<th>Timestamp</th>
+										<th>Doctor Name</th>
+										<th>Edit / Delete</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Exportable Blog Moderator Table -->
+			<!-- Update Doctor -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card" id="editDoctorCard">
+						<div class="header">
+							<h2>
+								<button
+									class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15"
+									type="button" onclick="hideEditCard('editDoctorCard')">
+									<i class="material-icons">border_color</i>
+								</button>
+								Edit Doctor Details
+							</h2>
+						</div>
+						<div class="body">
+							<div class="row clearfix">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="card">
+										<div class="body">
+											<div class="row clearfix">
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input class="form-control" type="text"
+																id="updateDoctorId" name="updateDoctorId" required
+																disabled placeholder="Doctor ID">
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-group">
+															<div class="form-line">
+																<input type="text" id="updateDoctorName"
+																	class="form-control" required placeholder="Name">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-group">
+															<div class="form-line">
+																<input type="text" id="updateDoctorEmail"
+																	class="form-control" required placeholder="Email">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row clearfix">
+												<div class="col-md-12">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input class="form-control" type="text"
+																id="updateDoctorAddress" name="updateDoctorAddress">
+															<label class="form-label">Address</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row clearfix">
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="demo-radio-button">
+															<input name="groupD" type="radio" id="doctor-female"
+																value="Female" /> <label for="doctor-female">Female</label>
+															<input name="groupD" type="radio" id="doctor-male"
+																value="Male" /> <label for="doctor-male">Male</label>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input class="form-control" type="number"
+																id="updateDoctorPhone" name="updateDoctorPhone">
+															<label class="form-label">Phone</label>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input class="form-control" type="text"
+																id="updateDoctorSpecialization"
+																name="updateDoctorSpecialization"> <label
+																class="form-label">Phone</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div align="center">
+												<button type="button"
+													class="btn btn-primary m-t-15 waves-effect"
+													id="updateDoctorBtn" align="center">
+													<i class="material-icons">update</i>&nbsp;&nbsp;Update
+													Doctor
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Update Doctor -->
+
+			<!-- ----------------------------------------------------- -->
+
+			<!-- Update Patient -->
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card" id="editPatientCard">
+						<div class="header">
+							<h2>
+								<button
+									class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15"
+									type="button" onclick="hideEditCard('editPatientCard')">
+									<i class="material-icons">border_color</i>
+								</button>
+								Edit Patient Details
+							</h2>
+						</div>
+						<div class="body">
+							<div class="row clearfix">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="card">
+										<div class="body">
+											<div class="row clearfix">
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input class="form-control" type="text"
+																id="updatePatientId" name="updatePatientId" required
+																disabled placeholder="Patient ID"/>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-8">
+													<div class="form-group form-float">
+														<div class="form-group">
+															<div class="form-line">
+																<input type="text" id="updatePatientName"
+																	class="form-control" required placeholder="Name">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row clearfix">
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-group">
+															<div class="form-line">
+																<input type="text" id="updatePatientEmail"
+																	class="form-control" required placeholder="Email">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="demo-radio-button">
+															<input name="groupP" type="radio" id="patient-female"
+																value="Female" /> <label for="patient-female">Female</label>
+															<input name="groupP" type="radio" id="patient-male"
+																value="Male" /> <label for="patient-male">Male</label>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-group">
+															<div class="form-line">
+																<input type="text" id="updatePatientDob"
+																	class="form-control" required placeholder="Email">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div align="center">
+										<button type="button"
+											class="btn btn-primary m-t-15 waves-effect"
+											id="updatePatientBtn" align="center">
+											<i class="material-icons">update</i>&nbsp;&nbsp;Update
+											Patient
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Update Patient -->
+
+		<!-- ----------------------------------------------------- -->
+
+		<!-- Update Blog -->
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card" id="editBlogCard">
+					<div class="header">
+						<h2>
+							<button
+								class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15"
+								type="button" onclick="hideEditCard('editBlogCard')">
+								<i class="material-icons">border_color</i>
+							</button>
+							Edit Blog Details
+						</h2>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="card">
+									<div class="body">
+										<div class="row clearfix">
+											<div class="col-md-4">
+												<div class="form-group form-float">
+													<div class="form-line">
+														<input class="form-control" type="text" id="updateBlogId"
+															name="updateBlogId" required disabled
+															placeholder="Blog ID">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group form-float">
+													<div class="form-group">
+														<div class="form-line">
+															<input type="text" id="updateBlogTitle"
+																class="form-control" required placeholder="Title">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group form-float">
+													<div class="form-group">
+														<div class="form-line">
+															<input type="text" id="updateBlogContent"
+																class="form-control" required placeholder="Blog Content">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix">
+											<div class="col-md-4">
+												<div class="form-group form-float">
+													<div class="form-line">
+														<input class="form-control" type="text"
+															id="updateBlogDoctorId" name="updateBlogDoctorId">
+														<label class="form-label">Doctor ID</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div align="center">
+										<button type="button"
+											class="btn btn-primary m-t-15 waves-effect"
+											id="updateBlogBtn" align="center">
+											<i class="material-icons">update</i>&nbsp;&nbsp;Update Blog
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Update Blog -->
+		</div>
+	</section>
+	<!-- Jquery Core Js -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Multi Select Plugin Js -->
+	<script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="plugins/node-waves/waves.js"></script>
+	<!-- Jquery Knob Plugin Js -->
+	<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Autosize Plugin Js -->
+	<script src="plugins/autosize/autosize.js"></script>
+	<!-- Moment Plugin Js -->
+	<script src="plugins/momentjs/moment.js"></script>
+	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+	<script
+		src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+	<!-- Custom Js -->
+	<script src="js/admin.js"></script>
+	<script src="js/pages/forms/basic-form-elements.js"></script>
+	<script src="js/pages/charts/jquery-knob.js"></script>
+	<script src="js/pages/tables/jquery-datatable.js"></script>
+
+
+
+	<!--Devacademy JS-->
+	<script src="js/Custom/ipaddress.js"></script>
+	<script src="js/Custom/jquerysession.js"></script>
+	<script src="js/Custom/NotifyCustom.js"></script>
+	<script src="js/Custom/adminDashboard.js"></script>
+
+
+	<!-- Demo Js -->
+	<script src="js/demo.js"></script>
+
+</body>
+</html>
