@@ -6,7 +6,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Patient Dashboard | Healthcare</title>
+<title>Patient Dashboard | Health Care</title>
 <!-- Favicon-->
 <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
 <!-- Google Fonts -->
@@ -41,294 +41,6 @@
 </script>
 
 <script src="js/Custom/ipaddress.js"></script>
-
-<script type="text/javascript">
-	/*	$(document)
-	 .ready(
-	 function() {
-	 //GET Email History Count
-	 $
-	 .ajax({
-	 //url: "http://localhost:57540/MailHistory/GetHistoryCount?type=Email",
-	 url : getCoreLayerAddress()
-	 + "/MailHistory/GetHistoryCount?type=Email",
-	 type : "GET",
-	 success : function(result) {
-	 $("#emailCountContainer")
-	 .append(
-	 '<div id="emailsSentCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
-	 + JSON
-	 .stringify(result)
-	 + '</div>');
-	 $("#emailsSentCount").attr("data-to",
-	 "" + JSON.stringify(result));
-	 },
-	 error : function(result) {
-	 alert('Error in serving Email History Count request'
-	 + result);
-	 }
-	 });
-
-	 //GET Invite History Count
-	 $
-	 .ajax({
-	 //url: "http://localhost:57540/MailHistory/GetHistoryCount?type=Invite",
-	 url : getCoreLayerAddress()
-	 + "/MailHistory/GetHistoryCount?type=Invite",
-	 type : "GET",
-	 success : function(result) {
-	 $("#inviteCountContainer")
-	 .append(
-	 '<div id="inviteSentCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
-	 + JSON
-	 .stringify(result)
-	 + '</div>');
-	 $("#inviteSentCount").text(
-	 "  " + JSON.stringify(result));
-	 },
-	 error : function(result) {
-	 alert('Error in serving Invite History request'
-	 + result);
-	 }
-	 });
-
-	 //GET Total Interns Count
-	 $
-	 .ajax({
-	 url : getCoreLayerAddress()
-	 + "/Mentees/GetAssociatesCount?type=Current",
-	 type : "GET",
-	 success : function(result) {
-	 $("#totalAssociatesCountContainer")
-	 .append(
-	 '<div id="totalAssocCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
-	 + JSON
-	 .stringify(result)
-	 + '</div>');
-	 $("#totalAssocCount").attr("data-to",
-	 "" + JSON.stringify(result));
-	 },
-	 error : function(result) {
-	 alert('Error in serving Total Associates Count: '
-	 + result);
-	 }
-	 });
-
-	 //GET Graduated Interns Count
-	 $
-	 .ajax({
-	 url : getCoreLayerAddress()
-	 + "/Mentees/GetAssociatesCount?type=Graduated",
-	 type : "GET",
-	 success : function(result) {
-	 $("#graduatedAssociatesCountContainer")
-	 .append(
-	 '<div id="gradAssocCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
-	 + JSON
-	 .stringify(result)
-	 + '</div>');
-	 $("#gradAssocCount").text(
-	 "  " + JSON.stringify(result));
-	 },
-	 error : function(result) {
-	 alert('Error in serving Graduated Associates Count: '
-	 + result);
-	 }
-	 });
-
-	 //GET Monthly Associate Movement
-	 $
-	 .ajax({
-	 url : getCoreLayerAddress()
-	 + "/Mentees/GetDevAcademyMonthlyStatus",
-	 type : "GET",
-	 success : function(result) {
-	 var dataTable = new google.visualization.DataTable();
-	 dataTable.addColumn('string', 'Month');
-	 dataTable.addColumn('number', 'Intake');
-	 dataTable.addColumn('number',
-	 'Graduated');
-
-	 for (var i = 0; i < result.length; i++) {
-	 if (result[i].Month === 1) {
-	 dataTable.addRow([ 'Jan',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 2) {
-	 dataTable.addRow([ 'Feb',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 3) {
-	 dataTable.addRow([ 'Mar',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 4) {
-	 dataTable.addRow([ 'Apr',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 5) {
-	 dataTable.addRow([ 'May',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 6) {
-	 dataTable.addRow([ 'Jun',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 7) {
-	 dataTable.addRow([ 'Jul',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 8) {
-	 dataTable.addRow([ 'Aug',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 9) {
-	 dataTable.addRow([ 'Sep',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 10) {
-	 dataTable.addRow([ 'Oct',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 11) {
-	 dataTable.addRow([ 'Nov',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 } else if (result[i].Month === 12) {
-	 dataTable.addRow([ 'Dec',
-	 result[i].Intake,
-	 result[i].Graduate ]);
-	 }
-	 }
-
-	 var options = {
-	 title : 'DevAcademy Status',
-	 //curveType: 'function'
-	 //legend: { position: 'bottom' }
-	 };
-
-	 var chart = new google.visualization.LineChart(
-	 document
-	 .getElementById('devAcademyMonthlyStatus'));
-
-	 chart.draw(dataTable, options);
-
-	 },
-	 error : function(result) {
-	 alert('Error in serving Graduated Associates Count: '
-	 + result);
-	 }
-	 });
-
-	 //GET Average WorkEx Associate Chart
-	 $
-	 .ajax({
-	 url : getCoreLayerAddress()
-	 + "/Mentees/GetAverageWorkExChart",
-	 type : "GET",
-	 success : function(result) {
-	 if (result.length === 0) {
-	 alert("Not enought data to draw charts!");
-	 } else {
-
-	 var dataTable = new google.visualization.DataTable();
-	 dataTable
-	 .addColumn('string',
-	 'Associate Work Experience');
-	 dataTable.addColumn('number',
-	 'Associate Count');
-
-	 if (result.length === 1) {
-	 dataTable
-	 .addRow([
-	 result[0].WorkExperience,
-	 result[0].DiffDate ]);
-	 } else if (result.length === 2) {
-	 dataTable
-	 .addRow([
-	 result[0].WorkExperience,
-	 result[0].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[1].WorkExperience,
-	 result[1].DiffDate ]);
-	 } else if (result.length === 3) {
-	 dataTable
-	 .addRow([
-	 result[0].WorkExperience,
-	 result[0].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[1].WorkExperience,
-	 result[1].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[2].WorkExperience,
-	 result[2].DiffDate ]);
-	 } else if (result.length === 4) {
-	 dataTable
-	 .addRow([
-	 result[0].WorkExperience,
-	 result[0].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[1].WorkExperience,
-	 result[1].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[2].WorkExperience,
-	 result[2].DiffDate ]);
-	 dataTable
-	 .addRow([
-	 result[3].WorkExperience,
-	 result[3].DiffDate ]);
-	 }
-
-	 var options = {
-	 title : 'Work Experience Vs Average Iteration(s)',
-	 bar : {
-	 groupWidth : "25%"
-	 },
-	 legend : 'bottom',
-	 vAxes : {
-	 // Adds titles to each axis.
-	 0 : {
-	 title : 'Average Iteration(s)'
-	 }
-	 },
-	 hAxes : {
-	 // Adds titles to each axis.
-	 0 : {
-	 title : ' Work Experience (Years)'
-	 }
-	 }
-
-	 };
-	 $("#avgWorkExChart").empty();//clear div
-	 var chart = new google.visualization.ColumnChart(
-	 document
-	 .getElementById('avgWorkExChart'));
-
-	 chart.draw(dataTable, options);
-
-	 //Fancy Notification
-	 showNotification(
-	 'bg-purple',
-	 'Average Work Experience Chart Created!',
-	 'top', 'right',
-	 'animated ZoomIn',
-	 'animated ZoomOut');//NotifyCustom.js
-
-	 }
-	 },
-	 error : function(result) {
-	 alert('Error in serving Batch  WorkEx Chart: '
-	 + result);
-	 }
-	 });
-	 });*/
-</script>
-
 </head>
 <body class="theme-orange">
 	<!-- Page Loader -->
@@ -397,7 +109,7 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li class="header">Patient Healthcare Tools</li>
+					<li class="header">Patient Health Care Tools</li>
 					<li class="active"><a href="patientDashboard.html"> <i
 							class="material-icons">home</i> <span>Dashboard</span>
 					</a></li>
@@ -528,6 +240,53 @@
 							<div id="real_time_chart" class="dashboard-flot-chart"></div>
 						</div>
 					</div>
+					<!-- FOLLOW DOCTOR -->
+					<div class="card">
+						<div class="header">
+							<h2>Follow Doctors</h2>
+						</div>
+						<div class="body">
+							<table class="table table-bordered table-hover"
+								id="followDoctorTable">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Specialization</th>
+										<th>Follow</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Name</th>
+										<th>Specialization</th>
+										<th>Follow</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+					<div class="card">
+						<div class="header">
+							<h2>Following Doctors</h2>
+						</div>
+						<div class="body">
+							<table class="table table-bordered table-hover"
+								id="followingDoctorTable">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Specialization</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Name</th>
+										<th>Specialization</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- #END# CPU Usage -->
@@ -559,7 +318,6 @@
 	<script src="plugins/chartjs/Chart.bundle.js"></script>
 
 	<!-- Flot Charts Plugin Js -->
-
 	<script src="plugins/flot-charts/jquery.flot.js"></script>
 	<script src="plugins/flot-charts/jquery.flot.resize.js"></script>
 	<script src="plugins/flot-charts/jquery.flot.pie.js"></script>
@@ -569,17 +327,466 @@
 	<!-- Sparkline Chart Plugin Js -->
 	<script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
 	<!-- Custom Js -->
 	<script src="js/admin.js"></script>
 	<script src="js/pages/index.js"></script>
+	<script src="js/pages/tables/jquery-datatable.js"></script>
 
 	<!--Devacademy JS-->
-	<script src="js/Custom/ipaddress.js"></script>
+
 	<script src="js/Custom/jquerysession.js"></script>
 	<script src="js/Custom/NotifyCustom.js"></script>
 	<script src="js/Custom/patientDashboard.js"></script>
 
 	<!-- Demo Js -->
 	<script src="js/demo.js"></script>
+
+	<script type="text/javascript">
+		function followDoctor(id) {
+			$.ajax({
+				url : getPresentationLayerAddress() + "/api/v1/patient/"
+						+ $.session.get("patientId") + "/doctor/" + id + "",
+				type : "POST",
+				contentType : "application/json; charset=utf-8",
+				crossDomain : true,
+				data : {},
+				success : function(result) {
+					alert("Following Doctor!");
+					setTimeout(function() {
+						location.reload();
+					}, 1000);
+				},
+				error : function(result) {
+					alert("Oops! Something went wrong!");
+				}
+			});
+
+		}
+
+		$(document)
+				.ready(
+						function() {
+							getDoctorsData(0);
+							getFollowingDoctorsData(0);
+
+							//GET DOCTORS to FOLLOW
+							function getDoctorsData(dTable) {
+
+								$
+										.ajax({
+											url : getPresentationLayerAddress()
+													+ "/api/v1/doctor/patient/"
+													+ $.session
+															.get("patientId")
+													+ "",
+											type : "GET",
+											success : function(result) {
+
+												var trHTML = "";
+												if (dTable === 0)// On first load
+												{
+													trHTML = "<tbody>";
+												} else {
+													$(
+															'#followDoctorTable > tbody')
+															.empty();
+													trHTML = "<tbody>";
+												}
+
+												// Doctor Moderator Table
+												for (i = 0; i < result.length; i++) {
+													trHTML += '<tr><td>'
+															+ result[i].name
+															+ '</td><td>'
+															+ result[i].specialization
+															+ '</td><td><button type="button" onclick="followDoctor('
+															+ result[i]._id
+															+ ')" class="btn btn-warning btn-circle waves-effect waves-circle waves-float"><i class="material-icons">rss_feed</i></button>'
+															+ '</td></tr>';
+												}// For loop ends
+
+												if (dTable === 0) {// On First Load
+
+													trHTML += "</tbody>";
+													$('#followDoctorTable')
+															.append(trHTML);
+
+													$('#followDoctorTable')
+															.DataTable(
+																	{
+																		dom : 'Bfrtip',
+																		responsive : true,
+																		buttons : [
+																				'copy',
+																				'csv',
+																				'excel',
+																				'pdf',
+																				'print' ],
+																		ordering : true,
+																		autoWidth : true,
+																		info : true,
+																	});
+												} else {
+													trHTML += "</tbody>";
+													$('#followDoctorTable')
+															.append(trHTML);
+												}
+											},
+											error : function(result) {
+												alert('Error in serving Doctor Data Request: '
+														+ result);
+											}
+										});
+
+							}
+
+							//GET FOLLOWING DOCTORS DATA
+							function getFollowingDoctorsData(dTable) {
+
+								$
+										.ajax({
+											url : getPresentationLayerAddress()
+													+ "/api/v1/patient/"
+													+ $.session
+															.get("patientId")
+													+ "",
+											type : "GET",
+											success : function(result) {
+
+												if (result.followDoctors == null) {
+													return;
+												}
+
+												var trHTML = "";
+												if (dTable === 0)// On first load
+												{
+													trHTML = "<tbody>";
+												} else {
+													$(
+															'#followingDoctorTable > tbody')
+															.empty();
+													trHTML = "<tbody>";
+												}
+
+												// Docotr Moderator Table
+												for (i = 0; i < result.followDoctors.length; i++) {
+													trHTML += '<tr><td>'
+															+ result.followDoctors[i].name
+															+ '</td><td>'
+															+ result.followDoctors[i].specialization
+															+ '</td></tr>';
+												}// For loop ends
+
+												if (dTable === 0) {// On First Load
+
+													trHTML += "</tbody>";
+													$('#followingDoctorTable')
+															.append(trHTML);
+
+													$('#followingDoctorTable')
+															.DataTable(
+																	{
+																		dom : 'Bfrtip',
+																		responsive : true,
+																		buttons : [
+																				'copy',
+																				'csv',
+																				'excel',
+																				'pdf',
+																				'print' ],
+																		ordering : true,
+																		autoWidth : true,
+																		info : true,
+																	});
+												} else {
+													trHTML += "</tbody>";
+													$('#followingDoctorTable')
+															.append(trHTML);
+												}
+											},
+											error : function(result) {
+												alert('Error in serving Following Doctor`s Data Request: '
+														+ result);
+											}
+										});
+
+							}
+
+							/* //GET Invite History Count
+							 $
+							 .ajax({
+							 //url: "http://localhost:57540/MailHistory/GetHistoryCount?type=Invite",
+							 url : getCoreLayerAddress()
+							 + "/MailHistory/GetHistoryCount?type=Invite",
+							 type : "GET",
+							 success : function(result) {
+							 $("#inviteCountContainer")
+							 .append(
+							 '<div id="inviteSentCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
+							 + JSON
+							 .stringify(result)
+							 + '</div>');
+							 $("#inviteSentCount").text(
+							 "  " + JSON.stringify(result));
+							 },
+							 error : function(result) {
+							 alert('Error in serving Invite History request'
+							 + result);
+							 }
+							 });
+
+							 //GET Total Interns Count
+							 $
+							 .ajax({
+							 url : getCoreLayerAddress()
+							 + "/Mentees/GetAssociatesCount?type=Current",
+							 type : "GET",
+							 success : function(result) {
+							 $("#totalAssociatesCountContainer")
+							 .append(
+							 '<div id="totalAssocCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
+							 + JSON
+							 .stringify(result)
+							 + '</div>');
+							 $("#totalAssocCount").attr("data-to",
+							 "" + JSON.stringify(result));
+							 },
+							 error : function(result) {
+							 alert('Error in serving Total Associates Count: '
+							 + result);
+							 }
+							 });
+
+							 //GET Graduated Interns Count
+							 $
+							 .ajax({
+							 url : getCoreLayerAddress()
+							 + "/Mentees/GetAssociatesCount?type=Graduated",
+							 type : "GET",
+							 success : function(result) {
+							 $("#graduatedAssociatesCountContainer")
+							 .append(
+							 '<div id="gradAssocCount" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="100">'
+							 + JSON
+							 .stringify(result)
+							 + '</div>');
+							 $("#gradAssocCount").text(
+							 "  " + JSON.stringify(result));
+							 },
+							 error : function(result) {
+							 alert('Error in serving Graduated Associates Count: '
+							 + result);
+							 }
+							 });
+
+							 //GET Monthly Associate Movement
+							 $
+							 .ajax({
+							 url : getCoreLayerAddress()
+							 + "/Mentees/GetDevAcademyMonthlyStatus",
+							 type : "GET",
+							 success : function(result) {
+							 var dataTable = new google.visualization.DataTable();
+							 dataTable.addColumn('string', 'Month');
+							 dataTable.addColumn('number', 'Intake');
+							 dataTable.addColumn('number',
+							 'Graduated');
+
+							 for (var i = 0; i < result.length; i++) {
+							 if (result[i].Month === 1) {
+							 dataTable.addRow([ 'Jan',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 2) {
+							 dataTable.addRow([ 'Feb',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 3) {
+							 dataTable.addRow([ 'Mar',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 4) {
+							 dataTable.addRow([ 'Apr',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 5) {
+							 dataTable.addRow([ 'May',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 6) {
+							 dataTable.addRow([ 'Jun',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 7) {
+							 dataTable.addRow([ 'Jul',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 8) {
+							 dataTable.addRow([ 'Aug',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 9) {
+							 dataTable.addRow([ 'Sep',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 10) {
+							 dataTable.addRow([ 'Oct',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 11) {
+							 dataTable.addRow([ 'Nov',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 } else if (result[i].Month === 12) {
+							 dataTable.addRow([ 'Dec',
+							 result[i].Intake,
+							 result[i].Graduate ]);
+							 }
+							 }
+
+							 var options = {
+							 title : 'DevAcademy Status',
+							 //curveType: 'function'
+							 //legend: { position: 'bottom' }
+							 };
+
+							 var chart = new google.visualization.LineChart(
+							 document
+							 .getElementById('devAcademyMonthlyStatus'));
+
+							 chart.draw(dataTable, options);
+
+							 },
+							 error : function(result) {
+							 alert('Error in serving Graduated Associates Count: '
+							 + result);
+							 }
+							 });
+
+							 //GET Average WorkEx Associate Chart
+							 $
+							 .ajax({
+							 url : getCoreLayerAddress()
+							 + "/Mentees/GetAverageWorkExChart",
+							 type : "GET",
+							 success : function(result) {
+							 if (result.length === 0) {
+							 alert("Not enought data to draw charts!");
+							 } else {
+
+							 var dataTable = new google.visualization.DataTable();
+							 dataTable
+							 .addColumn('string',
+							 'Associate Work Experience');
+							 dataTable.addColumn('number',
+							 'Associate Count');
+
+							 if (result.length === 1) {
+							 dataTable
+							 .addRow([
+							 result[0].WorkExperience,
+							 result[0].DiffDate ]);
+							 } else if (result.length === 2) {
+							 dataTable
+							 .addRow([
+							 result[0].WorkExperience,
+							 result[0].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[1].WorkExperience,
+							 result[1].DiffDate ]);
+							 } else if (result.length === 3) {
+							 dataTable
+							 .addRow([
+							 result[0].WorkExperience,
+							 result[0].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[1].WorkExperience,
+							 result[1].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[2].WorkExperience,
+							 result[2].DiffDate ]);
+							 } else if (result.length === 4) {
+							 dataTable
+							 .addRow([
+							 result[0].WorkExperience,
+							 result[0].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[1].WorkExperience,
+							 result[1].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[2].WorkExperience,
+							 result[2].DiffDate ]);
+							 dataTable
+							 .addRow([
+							 result[3].WorkExperience,
+							 result[3].DiffDate ]);
+							 }
+
+							 var options = {
+							 title : 'Work Experience Vs Average Iteration(s)',
+							 bar : {
+							 groupWidth : "25%"
+							 },
+							 legend : 'bottom',
+							 vAxes : {
+							 // Adds titles to each axis.
+							 0 : {
+							 title : 'Average Iteration(s)'
+							 }
+							 },
+							 hAxes : {
+							 // Adds titles to each axis.
+							 0 : {
+							 title : ' Work Experience (Years)'
+							 }
+							 }
+
+							 };
+							 $("#avgWorkExChart").empty();//clear div
+							 var chart = new google.visualization.ColumnChart(
+							 document
+							 .getElementById('avgWorkExChart'));
+
+							 chart.draw(dataTable, options);
+
+							 //Fancy Notification
+							 showNotification(
+							 'bg-purple',
+							 'Average Work Experience Chart Created!',
+							 'top', 'right',
+							 'animated ZoomIn',
+							 'animated ZoomOut');//NotifyCustom.js
+
+							 }
+							 },
+							 error : function(result) {
+							 alert('Error in serving Batch  WorkEx Chart: '
+							 + result);
+							 }
+							 });*/
+						});
+	</script>
+
 </body>
 </html>

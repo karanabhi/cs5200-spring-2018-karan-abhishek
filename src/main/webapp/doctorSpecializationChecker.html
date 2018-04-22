@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Symptom Checkers | Healthcare</title>
+<title>Specializations Checker | Health Care Application</title>
 <!-- Favicon-->
 <!--<link rel="icon" href="..favicon.ico" type="image/x-icon">-->
 <!-- Google Fonts -->
@@ -99,8 +99,8 @@
 <script src="js/Custom/ipaddress.js"></script>
 <script src="js/Custom/jquerysession.js"></script>
 <script src="js/Custom/NotifyCustom.js"></script>
-<script src="js/Custom/patientDashboard.js"></script>
-<script src="js/Custom/patientSymptomChecker.js"></script>
+<script src="js/Custom/doctorDashboard.js"></script>
+<script src="js/Custom/doctorSpecializationChecker.js"></script>
 
 <!-- Demo Js -->
 <script src="js/demo.js"></script>
@@ -117,7 +117,7 @@
 
 </head>
 
-<body class="theme-green">
+<body class="theme-brown">
 	<!-- Page Loader -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -169,12 +169,12 @@
 				</div>
 				<div class="info-container">
 					<div class="name" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false" id="patientName"></div>
+						aria-expanded="false" id="profileName"></div>
 					<div class="btn-group user-helper-dropdown">
 						<i class="material-icons" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
-							<li><button id="patient-logOut" onClick="patientlogout()"
+							<li><button id="doctor-logOut" onClick="doctorlogout()"
 									class="btn btn-block bg-red waves-effect">Sign Out</button></li>
 						</ul>
 					</div>
@@ -184,47 +184,17 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li class="header">Patient Healthcare Tools</li>
-					<li><a href="patientDashboard.html"> <i
+					<li class="header">Doctor Healthcare Tools</li>
+					<li><a href="doctorDashboard.html"> <i
 							class="material-icons">home</i> <span>Dashboard</span>
 					</a></li>
-					<li><a href="patientLocation.html"> <i
-							class="material-icons">add_location</i> <span>Locations</span>
+					<li><a href="createBlog.html"> <i class="material-icons">create</i>
+							<span>Write Blog</span>
 					</a></li>
-					<!-- <li><a href="javascript:void(0);" class="menu-toggle"> <i
-							class="material-icons">drafts</i> <span>Send Mails</span>
-					</a>
-						<ul class="ml-menu">
-							<li><a href="MailDashboard.html"> <i
-									class="material-icons">email</i> <span>E-mail</span>
-							</a></li>
-							<li><a href="InviteDashboard.html"> <i
-									class="material-icons">mail_outline</i> <span>Invite</span>
-							</a></li>
-						</ul></li>-->
-					<li><a href="patientBlog.html"> <i class="material-icons">folder</i>
-							<span>Read Blog</span>
-					</a></li>
-					<li class="active"><a href="patientSymptomChecker.html"> <i
-							class="material-icons">enhanced_encryption</i> <span>Symptom
+					<li class="active"><a href="doctorSpecializationChecker.html">
+							<i class="material-icons">star</i> <span>Specialization
 								Checker</span>
 					</a></li>
-					<!-- <li><a href="javascript:void(0);" class="menu-toggle"> <i
-							class="material-icons">import_export</i> <span>Import</span>
-					</a>
-						<ul class="ml-menu">
-							<li><a href="../ExcelToSql/MailDataTransformation.aspx">
-									<i class="material-icons">folder</i> <span>Learning Team
-										Excel</span>
-							</a></li>
-						</ul></li>
-					<li><a href="BatchDashboard.html"> <i
-							class="material-icons">assignment</i> <span>Batch
-								Management</span>
-					</a></li>
-					<li><a href="AssociateDashboard.html"> <i
-							class="material-icons">group</i> <span>Associate Dashboard</span>
-					</a></li>-->
 				</ul>
 			</div>
 			<!-- #Menu -->
@@ -250,83 +220,71 @@
 					<div class="card">
 						<div class="header">
 							<h2>Real-Time Diagnostics</h2>
-							<h5 class="right" id="patientPayload"></h5>
 						</div>
 						<div class="body">
 							<div class="row clearfix">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="card">
 										<div class="header">
-											<h2>Symptom Checker</h2>
+											<h2>Specialization Checker</h2>
 										</div>
 										<div class="body">
 											<div class="row clearfix">
 												<div class="col-md-4">
-													<select id="patientSymptomDropdown"
+													<select id="doctorSymptomDropdown"
 														class="selectpicker show-tick" data-live-search="true"
 														multiple>
 													</select>
 												</div>
-												<div id="symptomsSelected" class="col-md-8"></div>
+												<!-- <div id="symptomsSelected" class="col-md-8"></div> -->
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="demo-radio-button">
+															<input name="group3" type="radio" id="doctor-female"
+																value="Female" /> <label for="doctor-female">Female</label>
+															<input name="group3" type="radio" id="doctor-male"
+																value="Male" /> <label for="doctor-male">Male</label>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-float">
+														<div class="form-line">
+															<input type="text" class="form-control"
+																id="doctor-specialization-year" value="2000" /> <label
+																class="form-label">DOB Year*</label>
+														</div>
+													</div>
+												</div>
 											</div>
 											<div class="row clearfix">
 												<div class="col-md-12">
 													<button align="center" id="showSymptoms"
 														onClick="showSymptoms()"
-														class="btn btn-block bg-red waves-effect">Diagnose</button>
+														class="btn btn-block bg-red waves-effect">Show
+														Specializations</button>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!-- PROPOSED SYMPTOMS -->
-									<div class="card" id="patientProposedSymptomsCard">
+									<div class="card" id="doctorSpecializationTableCard">
 										<div class="header">
-											<h2>
-												<button
-													class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15 right"
-													type="button"
-													onclick="hideCard('patientProposedSymptomsCard')">
-													<i class="material-icons">clear</i>
-												</button>
-												&emsp; Proposed Symptom(s)
-											</h2>
-										</div>
-										<div class="body">
-											<div class="row clearfix">
-												<div class="col-md-12">
-													<div class="form-group">
-														<div class="form-line">
-															<textarea rows="2" id="patientProposedSymptomsSelected"
-																class="form-control auto-growth" readonly>
-															</textarea>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card" id="patientDiagnosisCard">
-										<div class="header">
-											<h2>Diagnosis Table</h2>
+											<h2>Specialization Table</h2>
 										</div>
 										<div class="body">
 											<div class="row clearfix">
 												<table class="table table-bordered table-hover"
-													id="patientDiagnosisTable">
+													id="doctorSpecializationTable">
 													<thead>
 														<tr>
-															<th>Issue Name</th>
-															<th>Issue Accuracy(%)</th>
-															<th>Medical Term</th>
 															<th>Specialization Name</th>
+															<th>Specialization Accuracy(%)</th>
 														</tr>
 													</thead>
 													<tfoot>
 														<tr>
-															<th>Issue Name</th>
-															<th>Issue Accuracy(%)</th>
-															<th>Medical Term</th>
-															<th>Specialization Name</th>															
+															<th>Specialization Name</th>
+															<th>Specialization Accuracy(%)</th>
 														</tr>
 													</tfoot>
 												</table>
@@ -337,39 +295,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- Issues CHECKER -->
-					<div class="card" id="patientIssueCard">
-						<div class="header">
-							<h2>
-								<button
-									class="btn btn-warning btn-circle-lg waves-effect waves-circle waves-float m-b-15 right"
-									type="button" onclick="hideCard('patientIssueCard')">
-									<i class="material-icons">clear</i>
-								</button>
-								&emsp; Issues Checker
-							</h2>
-						</div>
-						<div class="body">
-							<div class="row clearfix">
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="form-line">
-											<textarea rows="15" id="patientIssueSelected"
-												class="form-control auto-growth" readonly>
-															</textarea>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<!-- <script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo4nwU94wduONRzS5yD-KNq7AYmmmT2DY&libraries=places&callback=initMap"
-		async defer></script> -->
 </body>
 </html>

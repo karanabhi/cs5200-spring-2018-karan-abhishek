@@ -3,6 +3,8 @@
  */
 package edu.northeastern.cs5200.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.daos.Patient2DoctorDao;
+import edu.northeastern.cs5200.domainentities.Doctor;
 import edu.northeastern.cs5200.domainentities.Patient;
+import edu.northeastern.cs5200.domainentities.Patient2Doctor;
 import edu.northeastern.cs5200.repository.BlogRepository;
+import edu.northeastern.cs5200.repository.DoctorRepository;
 import edu.northeastern.cs5200.repository.PatientRepository;
 
 /**
@@ -27,6 +33,9 @@ public class PatientController {
 
 	@Autowired
 	BlogRepository blogRepository;
+
+	@Autowired
+	DoctorRepository doctorRepository;
 
 	@GetMapping("/api/v1/patient")
 	public Iterable<Patient> findAllPatients() {
@@ -55,13 +64,22 @@ public class PatientController {
 		patientRepository.delete(id);
 	}
 
-	// @PostMapping("/api/v1/patient/{pId}/blog/{bId}")
-	// public void followBlogByPatients(@PathVariable("pId") int pId,
-	// @PathVariable("bId") int bId) {
-	// Patient patient = patientRepository.findOne(pId);
-	// Blog blog = blogRepository.findOne(bId);
-	// patient.followBlog(blog);
-	// patientRepository.save(patient);
-	// }
+	@PostMapping("/api/v1/patient/{pId}/doctor/{dId}")
+	public void followBlogByPatients(@PathVariable("pId") int pId, @PathVariable("dId") int dId) {
+		Patient patient = patientRepository.findOne(pId);
+		Doctor doctor = doctorRepository.findOne(dId);
+		Patient2DoctorDao p2dDao = Patient2DoctorDao.getInstance();
+		Patient2Doctor p2d = new Patient2Doctor();
+		p2d.setDoctor(doctor);
+		p2d.setPatient(patient);
+		p2dDao.createPatient2Doctor(p2d);
+
+	}
+
+	@GetMapping("/api/v1/patient/doctor")
+	public List<Patient2Doctor> followDoctorsByPatient() {
+		Patient2DoctorDao p2dDao = Patient2DoctorDao.getInstance();
+		return p2dDao.findAllPatient2Doctors();
+	}
 
 }// class

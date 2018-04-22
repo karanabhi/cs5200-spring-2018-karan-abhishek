@@ -1,5 +1,7 @@
 package edu.northeastern.cs5200.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.northeastern.cs5200.daos.Patient2DoctorDao;
 import edu.northeastern.cs5200.domainentities.Doctor;
+import edu.northeastern.cs5200.domainentities.Patient2Doctor;
 import edu.northeastern.cs5200.repository.DoctorRepository;
 
 @RestController
@@ -45,4 +49,29 @@ public class DoctorController {
 		doctorRepository.delete(id);
 	}
 
-}
+	@GetMapping("/api/v1/doctor/patient/{patientId}")
+	public List<Doctor> findAllDoctorsNotFollowingPatientId(@PathVariable("patientId") int pid) {
+
+		List<Doctor> doctorLst = (List<Doctor>) doctorRepository.findAll();
+		List<Doctor> doctorLst1 = (List<Doctor>) doctorRepository.findAll();
+
+		Patient2DoctorDao p2dDao = Patient2DoctorDao.getInstance();
+		List<Patient2Doctor> p2d = p2dDao.findAllPatient2Doctors();
+
+		if (doctorLst.size() <= 0) {
+			return null;
+		} else if (p2d.size() <= 0) {
+			return doctorLst;
+		}
+		for (Patient2Doctor p : p2d) {
+			for (Doctor d : doctorLst) {
+				// System.out.println(doctorLst1.contains(d));
+				if (p.getDoctor().get_id() == d.get_id() && p.getPatient().get_id() == pid) {
+					doctorLst1.remove(d);
+					// System.out.println("Inside If: " + doctorLst.contains(d));
+				}
+			}
+		}
+		return doctorLst1;
+	}
+}// class

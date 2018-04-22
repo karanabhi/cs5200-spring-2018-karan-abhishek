@@ -3,10 +3,14 @@
  */
 package edu.northeastern.cs5200.domainentities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  * @author Abhishek Karan
@@ -20,31 +24,24 @@ public class Patient {
 	private int _id;
 	private String name, dob, gender, email, password;
 
-	// @ManyToMany(mappedBy = "Patient")
-	// @JsonIgnore
-	// private List<Blog> followedBlogs;
-	//
-	// public void followBlog(Blog blog) {
-	// this.followedBlogs.add(blog);
-	// if (!blog.getFollowedPatients().contains(this)) {
-	// blog.getFollowedPatients().add(this);
-	// }
-	// }
+	@ManyToMany
+	@JoinTable(name = "Patient2DOCTOR")
+	private List<Doctor> followDoctors = null;
 
 	/**
-	 * @return the followedBlogs
+	 * @return the followDoctors
 	 */
-	// public List<Blog> getFollowedBlogs() {
-	// return followedBlogs;
-	// }
+	public List<Doctor> getFollowDoctors() {
+		return followDoctors;
+	}
 
 	/**
-	 * @param followedBlogs
-	 *            the followedBlogs to set
+	 * @param followDoctors
+	 *            the followDoctors to set
 	 */
-	// public void setFollowedBlogs(List<Blog> followedBlogs) {
-	// this.followedBlogs = followedBlogs;
-	// }
+	public void setFollowDoctors(List<Doctor> followDoctors) {
+		this.followDoctors = followDoctors;
+	}
 
 	/**
 	 * @return the email

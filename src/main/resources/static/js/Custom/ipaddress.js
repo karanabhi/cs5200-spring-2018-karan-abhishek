@@ -1,11 +1,13 @@
-﻿function getPresentationLayerAddress()
-{
-    //return "http://10.182.240.180/devacademy";
-    return "http://localhost:8080/cs5200-spring-2018-karan-abhishek";
+﻿function getPresentationLayerAddress() {
+	// return "http://ec2-35-168-126-184.compute-1.amazonaws.com/";
+	return "http://localhost:8080/cs5200-spring-2018-karan-abhishek";
 }
 
 function getSandboxAPIAddress() {
-    //return "http://10.182.240.180/devacademy.core";
-    return "https://sandbox-healthservice.priaid.ch/";
+	// return "http://10.182.240.180/devacademy.core";
+	return "https://sandbox-healthservice.priaid.ch/";
 }
 
+function getToken() {
+	return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImthcmFuLmFAaHVza3kubmV1LmVkdSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjkwOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjIwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiI5OTk5OTk5OTkiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJQcmVtaXVtIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAxOC0wMi0yNSIsImlzcyI6Imh0dHBzOi8vc2FuZGJveC1hdXRoc2VydmljZS5wcmlhaWQuY2giLCJhdWQiOiJodHRwczovL2hlYWx0aHNlcnZpY2UucHJpYWlkLmNoIiwiZXhwIjoxNTI0NDQwODM5LCJuYmYiOjE1MjQ0MzM2Mzl9.a3_88tgFq91nguTTb5cLseJm_ZbkCP9EsI2K4vK2KbY&language=en-gb&format=json";
+}

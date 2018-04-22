@@ -1,14 +1,25 @@
-//window.token = "";
-var chance = 1;
+var chance = 0;
+var flag = "";
 $(function() {
-	//window.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImthcmFuLmFAaHVza3kubmV1LmVkdSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjkwOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjIwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiI5OTk5OTk5OTkiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJQcmVtaXVtIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAxOC0wMi0yNSIsImlzcyI6Imh0dHBzOi8vc2FuZGJveC1hdXRoc2VydmljZS5wcmlhaWQuY2giLCJhdWQiOiJodHRwczovL2hlYWx0aHNlcnZpY2UucHJpYWlkLmNoIiwiZXhwIjoxNTI0MjIwODEyLCJuYmYiOjE1MjQyMTM2MTJ9.aPI_t8a_lNWhRQrvhhUPk2iD6-l7Isk05gjiYpJx4QE&language=en-gb&format=json";
+	$("#patientPayload").css({
+		"marginTop" : "-1.4em"
+	});
+	$("#patientPayload").text(
+			"" + $.session.get("patientGender") + " | Year of Birth: "
+					+ $.session.get("patientDob").substring(0, 4));
 	$("#patientDiagnosisCard").hide();
+	$("#patientIssueCard").hide();
+	$("#patientProposedSymptomsCard").hide();
 	getAllSymptoms();
 });
 
+function hideCard(id) {
+	$("#" + id).hide();
+}
+
 function getAllSymptoms() {
 	$.ajax({
-		url : getSandboxAPIAddress() + "symptoms?token=" + window.token,
+		url : getSandboxAPIAddress() + "symptoms?token=" + getToken(),
 		type : "GET",
 		success : function(result) {
 			$("#patientSymptomDropdown").empty();
@@ -27,16 +38,53 @@ function getAllSymptoms() {
 }
 
 function showSymptoms() {
-	var str = "";
+	var str = "Selected Symptoms: ";
 	var ids = "";
-	$("#patientSymptomDropdown option:selected").each(function() {
-		str += "{ " + $(this).text() + " } &nbsp;&nbsp;&nbsp;";
-		ids += $(this).val() + ","
-	});
+	$("#patientSymptomDropdown option:selected").each(
+			function() {
+				ids += $(this).val() + ",";
+				checkFlag($(this).val(), $(this).text());
+				str += "{ " + $(this).text() + ": <span style='color:red;'>"
+						+ flag + "</span> } &nbsp;&nbsp;&nbsp;";
+			});
 	ids = ids.substring(0, ids.length - 1);
 	$("#symptomsSelected").html(str);
+	getProposedSymptoms(ids);
+	setTimeout(function() {
+		getDiagnosis(ids);
+	}, 1500);
 
-	getDiagnosis(ids);
+}
+
+function getProposedSymptoms(ids) {
+	$.ajax({
+		url : getSandboxAPIAddress() + "symptoms/proposed?symptoms=[" + ids
+				+ "]&gender=" + $.session.get("patientGender")
+				+ "&year_of_birth="
+				+ $.session.get("patientDob").substring(0, 4) + "&token="
+				+ getToken(),
+		type : "GET",
+		success : function(result) {
+			if (result.length != 0) {
+				populateProposedSymptomsText(result);
+			}
+		},
+		error : function(result) {
+			alert('Error in serving Proposed Symptoms request: ' + result);
+		}
+	});
+}
+
+function populateProposedSymptomsText(result) {
+	$('#patientProposedSymptomsSelected').text("");
+	$("#patientProposedSymptomsCard").show();
+	var str = "";
+	for (var i = 0; i < result.length; i++) {
+		str += result[i].Name + ", ";
+	}
+	str = str.substring(0, str.length - 2);
+	$('#patientProposedSymptomsSelected').text(str);
+	$('#patientProposedSymptomsSelected').focus();
 }
 
 function getDiagnosis(ids) {
@@ -45,7 +93,7 @@ function getDiagnosis(ids) {
 				+ "]&gender=" + $.session.get("patientGender")
 				+ "&year_of_birth="
 				+ $.session.get("patientDob").substring(0, 4) + "&token="
-				+ window.token,
+				+ getToken(),
 		type : "GET",
 		success : function(result) {
 			populateDiagnosisTable(result);
@@ -62,13 +110,16 @@ function populateDiagnosisTable(result) {
 	var trHTML = "<tbody>";
 
 	for (i = 0; i < result.length; i++) {
-		trHTML += '<tr><td>' + result[i].Issue.Name + '</td><td>'
+		trHTML += '<tr><td>' + result[i].Issue.Name
+				+ '<button class="right rm-default-btn" onclick="getIssueById('
+				+ result[i].Issue.ID
+				+ ')"><i class="material-icons">search</i></button></td><td>'
 				+ result[i].Issue.Accuracy + '</td><td>'
 				+ result[i].Issue.ProfName + '</td><td>';
 		for (j = 0; j < result[i].Specialisation.length; j++) {
-			trHTML += "{ " + result[i].Specialisation[j].Name
-					+ " } &nbsp;&nbsp;&nbsp;"
+			trHTML += result[i].Specialisation[j].Name + ", "
 		}
+		trHTML = trHTML.substring(0, trHTML.length - 2);
 		trHTML += '</td></tr>';
 	}// For loop ends
 
@@ -82,7 +133,53 @@ function populateDiagnosisTable(result) {
 			ordering : true
 		});
 		chance = chance + 1;
-	} // else {
-	// $('#patientDiagnosisTable').DataTable().ajax.reload();
-	// }
+	}
+}
+
+function getIssueById(id) {
+	$.ajax({
+		url : getSandboxAPIAddress() + "issues/" + id + "/info?token="
+				+ getToken(),
+		type : "GET",
+		success : function(result) {
+			populateIssueTextArea(result);
+		},
+		error : function(result) {
+			alert('Error in serving an Issue request: ' + result);
+		}
+	});
+}
+
+function populateIssueTextArea(result) {
+	$('#patientIssueSelected').text("");
+	$("#patientIssueCard").show();
+	var str = "Name:\n" + result.Name + "\n\nShort Description:\n"
+			+ result.DescriptionShort + "\n\nLong Description:\n"
+			+ result.Description + "\n\nPossible Symptoms:\n"
+			+ result.PossibleSymptoms + "\n\nTreatment Description:\n"
+			+ result.TreatmentDescription + "\n\nMedical Condition:\n"
+			+ result.MedicalCondition;
+
+	$('#patientIssueSelected').text(str);
+	$('#patientIssueSelected').focus();
+
+}
+
+var str1 = "Selected Symptom: ";
+function checkFlag(id, name) {
+	$.ajax({
+		url : getSandboxAPIAddress() + "redflag?symptomId=" + id + "&token="
+				+ getToken(),
+		type : "GET",
+		success : function(result) {
+			flag = result;
+			str1 += "{ <b>" + name + "- </b><span style='color:red;'>" + flag
+					+ "</span> } &nbsp;&nbsp;&nbsp;";
+			$("#symptomsSelected").html("");
+			$("#symptomsSelected").html(str1);
+		},
+		error : function(result) {
+			alert('Error in serving Red flag request: ' + result);
+		}
+	});
 }

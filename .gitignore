@@ -23,3 +23,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+####Deployment IPAddress
+src/main/resources/static/js/Custom/ipaddress.js
