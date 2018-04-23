@@ -5,7 +5,8 @@
 
 function getSandboxAPIAddress() {
 	// return "http://10.182.240.180/devacademy.core";
-	return "https://sandbox-healthservice.priaid.ch/";
+	//return "https://sandbox-healthservice.priaid.ch/";
+	return "https://healthservice.priaid.ch/";
 }
 
 function getToken() {
