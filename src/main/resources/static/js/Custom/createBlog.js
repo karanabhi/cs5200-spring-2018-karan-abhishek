@@ -24,7 +24,7 @@ function createPost() {
 		// NotifyCustom.js
 		// alert("Please Enter valid Template Name/ Template Body");
 	} else {
-		// alert('Creating Templates!');
+		console.log(Date.now());
 		$.ajax({
 			url : getPresentationLayerAddress() + "/api/v1/blog/doctor/"
 					+ doctorId + "/",

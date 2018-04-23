@@ -12,8 +12,8 @@ function getAllBlogs() {
 			// MailData Table
 			for (i = 0; i < result.length; i++) {
 				trHTML += '<tr><td>' + result[i].title + '</td><td>'
-						+ result[i].body + '</td><td>' + result[i].timestamp
-						+ '</td><td>' + result[i].doctor.name + '</td></tr>';
+						+ result[i].body + '</td><td>' + result[i].doctor.name
+						+ '</td></tr>';
 			}// For loop ends
 
 			trHTML += "</tbody>";
