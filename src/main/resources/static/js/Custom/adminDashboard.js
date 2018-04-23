@@ -452,8 +452,6 @@ function GetBlogModeratorData(dTable) {
 								+ '</td><td>'
 								+ result[i].body
 								+ '</td><td>'
-								+ result[i].timestamp
-								+ '</td><td>'
 								+ result[i].doctor.name
 								+ '</td><td><button type="button" onclick="populateUpdateBlogData('
 								+ result[i]._id
